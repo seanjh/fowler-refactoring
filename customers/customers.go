@@ -41,22 +41,21 @@ func (c *Customer) Statement() string {
 }
 
 func (c *Customer) amountFor(rental movies.Rental) float64 {
-	thisAmount := 0.0
+	result := 0.0
 	switch (rental.Movie.PriceCode) {
 	case movies.REGULAR:
-		thisAmount += 2
+		result += 2
 		if rental.DaysRented > 2 {
-			thisAmount += (float64)(rental.DaysRented - 2) * 1.5
+			result += (float64)(rental.DaysRented - 2) * 1.5
 		}
 	case movies.NEW_RELEASE:
-		thisAmount += (float64)(rental.DaysRented) * 3
+		result += (float64)(rental.DaysRented) * 3
 	case movies.CHILDRENS:
-		thisAmount += 1.5
+		result += 1.5
 		if rental.DaysRented > 3 {
-			thisAmount += (float64)(rental.DaysRented - 3) * 1.5
+			result += (float64)(rental.DaysRented - 3) * 1.5
 		}
-	default:
 	}
 
-	return thisAmount
+	return result
 }
