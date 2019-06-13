@@ -1,7 +1,5 @@
 package movies
 
-import "fmt"
-
 type PriceCode int
 
 const (
@@ -15,20 +13,7 @@ type Movie struct {
 	PriceCode PriceCode
 }
 
-func NewMovie(title string, priceCode PriceCode) *Movie {
-	return &Movie{Title: title, PriceCode: priceCode}
-}
-
-func (m *Movie) ToString() string {
-	return fmt.Sprintf(
-		"title=%s (code=%v)", m.Title, m.PriceCode)
-}
-
 type Rental struct {
 	Movie *Movie
 	DaysRented int
-}
-
-func NewRental(movie *Movie, daysRented int) *Rental {
-	return &Rental{Movie: movie, DaysRented: daysRented}
 }
