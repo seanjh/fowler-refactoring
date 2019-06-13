@@ -20,7 +20,7 @@ func (c *Customer) Statement() string {
 	frequentRenterPoints := 0
 	result := fmt.Sprintf("Rental record for %s\n", c.Name)
 	for _, rental := range c.Rentals {
-		thisAmount := c.amountFor(rental)
+		thisAmount := rental.GetCharge()
 
 		// add frequent renter points
 		frequentRenterPoints++
@@ -37,25 +37,5 @@ func (c *Customer) Statement() string {
 	// add footer lines
 	result += fmt.Sprintf("Amount owed is %f\n", totalAmount)
 	result += fmt.Sprintf("You earned %d frequent renter points", frequentRenterPoints)
-	return result
-}
-
-func (c *Customer) amountFor(rental movies.Rental) float64 {
-	result := 0.0
-	switch (rental.Movie.PriceCode) {
-	case movies.REGULAR:
-		result += 2
-		if rental.DaysRented > 2 {
-			result += (float64)(rental.DaysRented - 2) * 1.5
-		}
-	case movies.NEW_RELEASE:
-		result += (float64)(rental.DaysRented) * 3
-	case movies.CHILDRENS:
-		result += 1.5
-		if rental.DaysRented > 3 {
-			result += (float64)(rental.DaysRented - 3) * 1.5
-		}
-	}
-
 	return result
 }
