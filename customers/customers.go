@@ -20,8 +20,6 @@ func (c *Customer) Statement() string {
 	frequentRenterPoints := 0
 	result := fmt.Sprintf("Rental record for %s\n", c.Name)
 	for _, rental := range c.Rentals {
-		thisAmount := rental.GetCharge()
-
 		// add frequent renter points
 		frequentRenterPoints++
 		// add bonus for a two dat new release rental
@@ -31,8 +29,8 @@ func (c *Customer) Statement() string {
 		}
 
 		// show figures for this rental
-		result += fmt.Sprintf("\t%s\t%f\n", rental.Movie.Title, thisAmount)
-		totalAmount += thisAmount
+		result += fmt.Sprintf("\t%s\t%f\n", rental.Movie.Title, rental.GetCharge())
+		totalAmount += rental.GetCharge()
 	}
 	// add footer lines
 	result += fmt.Sprintf("Amount owed is %f\n", totalAmount)
