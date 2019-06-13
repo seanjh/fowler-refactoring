@@ -37,3 +37,11 @@ func (r *Rental) GetCharge() float64 {
 
 	return result
 }
+
+func (r *Rental) FrequentRenterPoints() int {
+	// add bonus for a two dat new release rental
+	if (r.Movie.PriceCode == NEW_RELEASE && r.DaysRented > 1) {
+		return 2
+	}
+	return 1
+}

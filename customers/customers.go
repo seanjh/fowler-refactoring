@@ -21,12 +21,7 @@ func (c *Customer) Statement() string {
 	result := fmt.Sprintf("Rental record for %s\n", c.Name)
 	for _, rental := range c.Rentals {
 		// add frequent renter points
-		frequentRenterPoints++
-		// add bonus for a two dat new release rental
-		if (rental.Movie.PriceCode == movies.NEW_RELEASE &&
-			rental.DaysRented > 1) {
-			frequentRenterPoints++
-		}
+		frequentRenterPoints += rental.FrequentRenterPoints()
 
 		// show figures for this rental
 		result += fmt.Sprintf("\t%s\t%f\n", rental.Movie.Title, rental.GetCharge())
