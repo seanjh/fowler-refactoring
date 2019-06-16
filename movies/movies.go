@@ -18,7 +18,7 @@ type Rental struct {
 	DaysRented int
 }
 
-func (r *Rental) GetCharge() float64 {
+func (r *Rental) Charge() float64 {
 	result := 0.0
 	switch (r.Movie.PriceCode) {
 	case REGULAR:
