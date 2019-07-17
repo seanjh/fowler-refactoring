@@ -3,7 +3,7 @@ package customers
 import (
 	"testing"
 
-	"../movies"
+	"refactoring/movies"
 )
 
 func TestStatement(t *testing.T) {

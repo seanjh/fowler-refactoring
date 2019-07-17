@@ -3,11 +3,11 @@ package customers
 import (
 	"fmt"
 
-	"../movies"
+	"refactoring/movies"
 )
 
 type Customer struct {
-	Name string
+	Name    string
 	Rentals []movies.Rental
 }
 
